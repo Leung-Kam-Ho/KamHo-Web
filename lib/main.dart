@@ -38,7 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
     databaseReference.onValue.listen((event) {
       setState(() {
         count++;
-        _displayMessage = count.toString();
+        final data = event.snapshot.value as Map;
+        _displayMessage = "Message: ${data["message"]} \nTime: ${data['TimeStamp'].toString()}";
       });
     });
   }
@@ -62,8 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () async {
               await databaseReference.set({
                 'message': _message,
+                'TimeStamp' : DateTime.now()
               });
-              
             },
             child: const Text('Send'),
           ),

@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () async {
               await databaseReference.set({
                 'message': _message,
-                'TimeStamp' : DateTime.now()
+                'TimeStamp' : "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
               });
             },
             child: const Text('Send'),

@@ -44,12 +44,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAdw_VX5wtImZVXtGr5e6EXFQ-T0GsuKc4',
-    appId: '1:122345794363:web:049359465667d9edbce51e',
-    messagingSenderId: '122345794363',
-    projectId: 'fluttertest-bfa3b',
-    authDomain: 'fluttertest-bfa3b.firebaseapp.com',
-    storageBucket: 'fluttertest-bfa3b.appspot.com',
+    apiKey: "AIzaSyAdw_VX5wtImZVXtGr5e6EXFQ-T0GsuKc4",
+  authDomain: "fluttertest-bfa3b.firebaseapp.com",
+  databaseURL: "https://fluttertest-bfa3b-default-rtdb.firebaseio.com",
+  projectId: "fluttertest-bfa3b",
+  storageBucket: "fluttertest-bfa3b.appspot.com",
+  messagingSenderId: "122345794363",
+  appId: "1:122345794363:web:049359465667d9edbce51e"
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -79,4 +80,5 @@ class DefaultFirebaseOptions {
     iosClientId: '122345794363-ra5n08uqjitu0054nrhchvbc1gjvf04h.apps.googleusercontent.com',
     iosBundleId: 'com.example.firebasetest',
   );
+  
 }

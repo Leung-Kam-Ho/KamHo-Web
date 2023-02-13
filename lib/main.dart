@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
           //primarySwatch: Colors.yellow,
-          primaryColor: Colors.yellow,),
+          primaryColor: Color.fromARGB(255, 248, 239, 155),
+          canvasColor: Colors.black),
+          
       title: 'Firebase App',
       home: MyHomePage(),
     );

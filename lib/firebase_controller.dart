@@ -12,22 +12,32 @@ class FirebaseController extends StatefulWidget {
 class _FirebaseControllerState extends State<FirebaseController> {
   final databaseReference = FirebaseDatabase.instance.ref();
   List temp = [];
+  List tempHover = [];
 
-  void refresh(DatabaseEvent event) {
+  bool visible = true;
+
+  Future<void> refresh(DatabaseEvent event) async {
     try {
       final data = event.snapshot.value as Map;
       temp = [];
+      tempHover = [];
       data["Testing"].forEach((key, value) {
         setState(() {
+          tempHover.add(false);
           temp.add(
               [value["message"], value['TimeStamp'].toString(), value["id"]]);
+          //visible = true;
         });
       });
-    } catch (_) {
-    }
+    } catch (_) {}
+    await Future.delayed(const Duration(milliseconds: 300));
+    setState(() {
+      visible = true;
+    });
   }
 
   Future<void> firebaseInit() async {
+    //visible = false;
     DatabaseEvent event = await databaseReference.once();
     refresh(event);
   }
@@ -43,9 +53,11 @@ class _FirebaseControllerState extends State<FirebaseController> {
       });
     });
     databaseReference.onValue.listen((event) {
+      //visible = false;
       setState(() {
-        refresh(event);
+        visible = false;
       });
+      refresh(event);
     });
   }
 
@@ -55,24 +67,30 @@ class _FirebaseControllerState extends State<FirebaseController> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Expanded(
-      child: temp.length > 0
-          ? ListView.builder(
-              padding: EdgeInsets.all(10),
-              shrinkWrap: true,
-              itemCount: temp.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => del(temp[index][2]),
-                  child: CardView(
-                    message: temp[index],
-                  ),
-                );
-              },
-            )
-          : CardView(message: ["Welcome","hi"]),
-    );
-    
+        child: temp.length > 0
+            ? SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (int i = 0; i < temp.length; i++)
+                      MouseRegion(
+                        onEnter: (event) => setState(() {
+                          tempHover[i] = true;
+                        }),
+                        onExit: (event) => setState(() {
+                          tempHover[i] = false;
+                        }),
+                        child: AnimatedScale(
+                          duration: Duration(milliseconds: 100),
+                          scale: tempHover[i]? 1.1 : 1,
+                          child: GestureDetector(
+                              onTap: () => del("${temp[i][2]}"),
+                              child: CardView(message: temp[i])),
+                        ),
+                      )
+                  ],
+                ),
+              )
+            : Text("No Message"));
   }
 }

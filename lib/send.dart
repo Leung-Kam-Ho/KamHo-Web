@@ -9,8 +9,14 @@ class Send extends StatefulWidget {
 }
 
 class _SendState extends State<Send> {
+  final sendTF = TextEditingController();
   String _message = "";
   final databaseReference = FirebaseDatabase.instance.ref();
+
+  void clearText() {
+    sendTF.clear();
+    _message = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +26,7 @@ class _SendState extends State<Send> {
         children: [
           Expanded(
             child: TextField(
+              controller: sendTF,
               onChanged: (value) {
                 setState(() {
                   _message = value;
@@ -41,12 +48,14 @@ class _SendState extends State<Send> {
                     'TimeStamp':
                         "${now.year.toString()}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')} ${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}",
                   });
+                  clearText();
                 }
               },
               child: const Text(
-                'Send', 
-                style: TextStyle(
-                  color :Colors.white, fontWeight: FontWeight.bold),),
+                'Send',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
             decoration: BoxDecoration(
                 color: Colors.black,

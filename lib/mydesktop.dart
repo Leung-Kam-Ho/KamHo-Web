@@ -29,11 +29,13 @@ class _MydesktopState extends State<Mydesktop> {
           children: [
             //SidePanel(),
             const Flexible(
-              flex: 3,
-              child: GameArea()
+              flex: 2,
+              child: ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(25)),
+      child: GameArea())
               ),
             Flexible(
-              flex: 1,
+              flex: 4,
               child: 
                 Padding(
                   padding: EdgeInsets.only(left:MediaQuery.of(context).padding.top),

@@ -14,11 +14,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+
           //primarySwatch: Colors.yellow,
           primaryColor: Color.fromARGB(255, 248, 239, 155),
-          canvasColor: Colors.black),
+          canvasColor: Colors.black,
+          scaffoldBackgroundColor: Color.fromARGB(255, 248, 239, 155)),
           
-      title: 'Firebase App',
+          
+      title: 'Kam Ho',
+
       home: MyHomePage(),
     );
   }

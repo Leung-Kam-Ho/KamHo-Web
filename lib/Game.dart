@@ -12,21 +12,70 @@ class Game extends StatefulWidget {
 }
 
 class _GameState extends State<Game> {
-  final rand = 0;
-  final upperGrid = [0,0,0,0,0,0,0,0,0];
-  final lowerGrid = [0,0,0,0,0,0,0,0,0];
+  int rand = 0;
+  bool visable = true;
+  bool upperTurn = true;
+  List upperGrid = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ];
+  List lowerGrid = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ];
+
+  void throwDice() async {
+    setState(() {
+      //upperTurn = !upperTurn;
+      visable = false;
+    });
+    rand = Random().nextInt(9);
+
+    await Future.delayed(const Duration(milliseconds: 200));
+    setState(() {
+      visable = true;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //throwDice();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          DiceGrid(grid: upperGrid,),
-          DropArea(
-            tts: "$rand",
+    return Column(
+      children: [
+        DiceGrid(
+          grid: upperGrid,
+          turn: upperTurn,
+        ),
+        Flexible(
+          child: GestureDetector(
+            onTap: () => throwDice(),
+            child: AnimatedScale(
+              duration: const Duration(milliseconds: 100),
+              scale: visable ? 1 : 0.9,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 100),
+                opacity: visable ? 1 : 0.5,
+                child: DropArea(
+                  tts: "$rand",
+                ),
+              ),
+            ),
           ),
-          DiceGrid(grid : lowerGrid)
-        ],
-      ),
+        ),
+        DiceGrid(
+          grid: lowerGrid,
+          turn: !upperTurn,
+        )
+      ],
     );
+    ;
   }
 }

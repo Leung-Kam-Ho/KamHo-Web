@@ -1,3 +1,4 @@
+import 'package:firebasetest/otherUI.dart';
 import 'package:flutter/material.dart';
 
 class ResponsiveLayout extends StatelessWidget {
@@ -11,10 +12,14 @@ class ResponsiveLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth < 1200 || constraints.maxHeight < 600) {
+        final h = constraints.maxHeight;
+        final w = constraints.maxWidth;
+        if (h >= 700 && w >= 800) {
+          return desktop;
+        } else if (h >= 500 && w >= 300) {
           return mobile;
         } else {
-          return desktop;
+          return const OtherUI();
         }
       },
     );

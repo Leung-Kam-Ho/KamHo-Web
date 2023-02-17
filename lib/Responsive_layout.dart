@@ -20,6 +20,7 @@ class ResponsiveLayout extends StatelessWidget {
           return mobile;
         } else {
           return const OtherUI();
+          //return mobile;
         }
       },
     );

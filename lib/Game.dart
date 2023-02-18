@@ -31,7 +31,7 @@ class _GameState extends State<Game> {
       //upperTurn = !upperTurn;
       visable = false;
     });
-    rand = Random().nextInt(9);
+    rand = Random().nextInt(5) + 1;
 
     await Future.delayed(const Duration(milliseconds: 200));
     setState(() {

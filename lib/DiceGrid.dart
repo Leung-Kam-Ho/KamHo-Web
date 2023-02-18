@@ -22,7 +22,7 @@ class _DiceGridState extends State<DiceGrid> {
       child: Center(
         child: Container(
           color: widget.turn
-              ? Theme.of(context).primaryColor
+              ? Theme.of(context).canvasColor//Theme.of(context).primaryColor
               : Theme.of(context).canvasColor,
           child: Row(
             

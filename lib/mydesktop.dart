@@ -27,20 +27,18 @@ class _MydesktopState extends State<Mydesktop> {
         padding: EdgeInsets.all(8+ MediaQuery.of(context).padding.top),
         child: Row(
           children: [
-            //SidePanel(),
-            const Flexible(
-              flex: 2,
-              child: ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(25)),
-      child: GameArea())
-              ),
-            Flexible(
-              flex: 4,
+            SidePanel(),
+             
+           Expanded(
+
               child: 
                 Padding(
                   padding: EdgeInsets.only(left:MediaQuery.of(context).padding.top),
                   child: MessageBox(),
-                ))
+                )),
+                ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(25)),
+      child: GameArea()),
 
             
           ],

@@ -10,12 +10,11 @@ class SidePanel extends StatefulWidget {
 class _SidePanelState extends State<SidePanel> {
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(topRight: Radius.circular(5),bottomRight: Radius.circular(5)),
-      child: Container(
-        width: 200,
-        color: Colors.black,
-      ),
-    );
+    return Container(
+        width: 100,
+        alignment: Alignment.topCenter,
+        color: Colors.transparent,
+        child:  Text("=",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30))
+      );
   }
 }

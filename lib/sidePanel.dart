@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -8,10 +9,10 @@ class SidePanel extends StatefulWidget {
   }) : super(key: key);
   final VoidCallback onPop;
   @override
-  _SidePanelState createState() => _SidePanelState();
+  SidePanelState createState() => SidePanelState();
 }
 
-class _SidePanelState extends State<SidePanel> {
+class SidePanelState extends State<SidePanel> {
   @override
   Widget build(BuildContext context) {
     return Padding(

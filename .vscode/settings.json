@@ -1,4 +1,8 @@
 {
     "cmake.configureOnOpen": false,
-    "cmake.sourceDirectory": "${workspaceFolder}/linux"
+    "cmake.sourceDirectory": "${workspaceFolder}/linux",
+    "editor.fontFamily": "Monocraft",
+    "files.autoSave": "afterDelay",
+    //"editor.fontFamily": "FiraCode-Bold",
+    "editor.fontLigatures": true,
 }

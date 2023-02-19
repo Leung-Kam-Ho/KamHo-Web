@@ -1,8 +1,7 @@
 import 'package:firebasetest/GameArea.dart';
+import 'package:firebasetest/Rule.dart';
 import 'package:firebasetest/messageBox.dart';
 
-import 'send.dart';
-import 'firebase_controller.dart';
 import 'package:flutter/material.dart';
 import 'sidePanel.dart';
 
@@ -10,38 +9,62 @@ class Mydesktop extends StatefulWidget {
   const Mydesktop({Key? key}) : super(key: key);
 
   @override
-  _MydesktopState createState() => _MydesktopState();
+  MydesktopState createState() => MydesktopState();
 }
 
-class _MydesktopState extends State<Mydesktop> {
+class MydesktopState extends State<Mydesktop> {
+  bool showMessageBox = false;
+
+  void onp() {
+    setState(() {
+      showMessageBox = !showMessageBox;
+    });
+  }
+
   @override
-
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      /*appBar: AppBar(
-        title: const Text('Firebase App'),
-        
-      ),*/
-      body: Padding(
-        padding: EdgeInsets.all(8+ MediaQuery.of(context).padding.top),
-        child: Row(
-          children: [
-            SidePanel(),
-             
-           Expanded(
-
-              child: 
-                Padding(
-                  padding: EdgeInsets.only(left:MediaQuery.of(context).padding.top),
-                  child: MessageBox(),
-                )),
-                ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(25)),
-      child: GameArea()),
-
-            
-          ],
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      color: Theme.of(context).canvasColor,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Padding(
+          padding: EdgeInsets.all(8 + MediaQuery.of(context).padding.top),
+          child: Row(
+            children: [
+              SidePanel(onPop: onp),
+              Expanded(
+                  child: Padding(
+                padding:
+                    EdgeInsets.only(left: MediaQuery.of(context).padding.top),
+                child: const Rule(),
+              )),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: RotatedBox(
+                  quarterTurns: 3,
+                  child: Text(
+                    "KNUCKLEBONES",
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 3.0),
+                  ),
+                ),
+              ),
+              MouseRegion(
+                  onEnter: (event) => setState(() {
+                        //ruleMode = true;
+                      }),
+                  onExit: (event) => setState(() {
+                        //ruleMode = false;
+                      }),
+                  child: const ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(25)),
+                      child: GameArea())),
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:firebasetest/DiceGrid.dart';
 import 'package:firebasetest/dropArea.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +7,10 @@ class Game extends StatefulWidget {
   const Game({Key? key}) : super(key: key);
 
   @override
-  _GameState createState() => _GameState();
+  GameState createState() => GameState();
 }
 
-class _GameState extends State<Game> {
+class GameState extends State<Game> {
   int rand = 0;
   bool visable = true;
   bool upperTurn = true;
@@ -41,9 +40,7 @@ class _GameState extends State<Game> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    //throwDice();
   }
 
   @override

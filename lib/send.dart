@@ -1,14 +1,15 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Send extends StatefulWidget {
-  const Send({Key? key}) : super(key: key);
-
+  const Send({Key? key,}) : super(key: key);
+  
   @override
-  _SendState createState() => _SendState();
+  SendState createState() => SendState();
 }
 
-class _SendState extends State<Send> {
+class SendState extends State<Send> {
   final sendTF = TextEditingController();
   String _message = "";
   final databaseReference = FirebaseDatabase.instance.ref();
@@ -21,7 +22,7 @@ class _SendState extends State<Send> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Row(
         children: [
           Expanded(
@@ -30,13 +31,13 @@ class _SendState extends State<Send> {
               onChanged: (value) {
                 setState(() {
                   _message = value;
-                  print(_message);
                 });
               },
             ),
           ),
-          Container(
-            child: MaterialButton(
+          IconButton(
+              // Use the MdiIcons class for the IconData
+              icon: SvgPicture.asset("MaterialDesign/AddBox.svg"),
               onPressed: () async {
                 if (_message.isNotEmpty) {
                   String key =
@@ -50,17 +51,7 @@ class _SendState extends State<Send> {
                   });
                   clearText();
                 }
-              },
-              child: const Text(
-                'Send',
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-            decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: const BorderRadius.all(Radius.circular(25))),
-          ),
+              }),
         ],
       ),
     );

@@ -14,15 +14,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-
-          //primarySwatch: Colors.yellow,
-          primaryColor: Color.fromARGB(255, 248, 239, 155),
-          canvasColor: Colors.black,
-          scaffoldBackgroundColor: Color.fromARGB(255, 248, 239, 155)),
-          
-          
+        fontFamily: 'OpenSans',
+        
+        //primarySwatch: Colors.yellow,
+        primaryColor: Color.fromARGB(255, 233, 237, 201),
+        canvasColor: Color.fromARGB(255, 0, 0, 0),
+      ),
       title: 'Kam Ho',
-
       home: MyHomePage(),
     );
   }

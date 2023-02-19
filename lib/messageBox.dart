@@ -19,7 +19,7 @@ class _MessageBoxState extends State<MessageBox> {
         Padding(
           padding: EdgeInsets.only(top: 8.0),
           child: Text(
-            "Messege Board",
+            "MESSAGE BOARD",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
           ),

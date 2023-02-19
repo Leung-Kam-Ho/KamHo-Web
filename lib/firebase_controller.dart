@@ -30,7 +30,7 @@ class _FirebaseControllerState extends State<FirebaseController> {
         });
       });
     } catch (_) {}
-    await Future.delayed(const Duration(milliseconds: 300));
+    //await Future.delayed(const Duration(milliseconds: 300));
     setState(() {
       visible = true;
     });
@@ -68,7 +68,7 @@ class _FirebaseControllerState extends State<FirebaseController> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: temp.length > 0
+        child: temp.isNotEmpty
             ? SingleChildScrollView(
                 child: Column(
                   children: [
@@ -81,7 +81,7 @@ class _FirebaseControllerState extends State<FirebaseController> {
                           tempHover[i] = false;
                         }),
                         child: AnimatedScale(
-                          duration: Duration(milliseconds: 100),
+                          duration: const Duration(milliseconds: 100),
                           scale: tempHover[i]? 1.1 : 1,
                           child: GestureDetector(
                               onTap: () => del("${temp[i][2]}"),
@@ -91,6 +91,7 @@ class _FirebaseControllerState extends State<FirebaseController> {
                   ],
                 ),
               )
-            : Text("No Message"));
+            : const Padding(padding: EdgeInsets.all(8.0),
+            child: Text("No Message", style: TextStyle(fontWeight: FontWeight.bold),)));
   }
 }

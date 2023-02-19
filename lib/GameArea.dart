@@ -12,7 +12,7 @@ class _GameAreaState extends State<GameArea> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Theme.of(context).canvasColor,
       child: Center(
           child: Padding(
         padding: const EdgeInsets.all(20.0),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -6,8 +5,10 @@ class SidePanel extends StatefulWidget {
   const SidePanel({
     Key? key,
     required this.onPop,
+
   }) : super(key: key);
   final VoidCallback onPop;
+
   @override
   SidePanelState createState() => SidePanelState();
 }
@@ -18,10 +19,10 @@ class SidePanelState extends State<SidePanel> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-          width: 100,
-          alignment: Alignment.topCenter,
-          color: Colors.transparent,
-          child: IconButton(
+            width: 100,
+            alignment: Alignment.topCenter,
+            color: Colors.transparent,
+            child: IconButton(
               // Use the MdiIcons class for the IconData
               icon: SvgPicture.asset(
                 "MaterialDesign/MenuBar.svg",
@@ -29,7 +30,8 @@ class SidePanelState extends State<SidePanel> {
                     Theme.of(context).primaryColor, BlendMode.srcIn),
               ),
               onPressed: widget.onPop,
-              )),
+            )),
+      
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Tile extends StatefulWidget {
   const Tile({
@@ -17,22 +18,31 @@ class _TileState extends State<Tile> {
     return Padding(
         padding: const EdgeInsets.all(5.0),
         child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(25)),
+          borderRadius: BorderRadius.all(Radius.circular(15)),
           child: Container(
             color: Theme.of(context).primaryColor,
             child: Padding(
               padding: const EdgeInsets.all(2.0),
               child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
                   child: Stack(
+                    fit: StackFit.expand,
                     alignment: AlignmentDirectional.center,
                     children: [
                       
                       Container(
                           color:Theme.of(context).canvasColor),
-                      Text(widget.tts == "0" ? "" : widget.tts, 
-                      style: TextStyle(color: Colors.white, fontSize: 30),
-                      textAlign: TextAlign.center,)
+                      Container(
+
+                        child: widget.tts != "0" ? 
+                        SvgPicture.asset(
+                          "MaterialDesign/dice-${widget.tts}.svg"
+                        ,colorFilter: ColorFilter.mode(
+                    Theme.of(context).primaryColor, BlendMode.srcIn),
+                    
+                    ):Container()),
+                      
+                      
                       
                     ],
                   )),

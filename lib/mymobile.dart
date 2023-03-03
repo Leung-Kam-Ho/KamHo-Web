@@ -1,5 +1,6 @@
 
-import 'GameArea.dart';
+
+import 'Rule.dart';
 import 'send.dart';
 import 'firebase_controller.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,14 @@ class _MymobileState extends State<Mymobile> {
         
       ),*/
       body:Padding(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-        child: const GameArea(),)
+                padding:
+                    EdgeInsets.only(left: MediaQuery.of(context).padding.top),
+                  
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Rule(),
+                ),
+              )
     );
   }
 }

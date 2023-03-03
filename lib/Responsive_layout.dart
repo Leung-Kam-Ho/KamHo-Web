@@ -19,7 +19,7 @@ class ResponsiveLayout extends StatelessWidget {
         } else if (h >= 500 && w >= 300) {
           return mobile;
         } else {
-          return const OtherUI();
+          return mobile;
           //return mobile;
         }
       },

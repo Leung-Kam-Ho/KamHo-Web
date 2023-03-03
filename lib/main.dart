@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'OpenSans',
         
         //primarySwatch: Colors.yellow,
-        primaryColor: const Color.fromARGB(255, 233, 237, 201),
-        canvasColor: const Color.fromARGB(255, 0, 0, 0),
+        primaryColor: Color.fromARGB(255, 255, 255, 255),
+        canvasColor: const Color.fromARGB(255, 37, 37, 37),
       ),
       title: 'Kam Ho',
       home: MyHomePage(),

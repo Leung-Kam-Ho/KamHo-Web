@@ -4,6 +4,7 @@ import 'Rule.dart';
 import 'send.dart';
 import 'firebase_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Mymobile extends StatefulWidget {
   const Mymobile({ Key? key }) : super(key: key);
@@ -15,6 +16,9 @@ class Mymobile extends StatefulWidget {
 class _MymobileState extends State<Mymobile> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Theme.of(context).canvasColor),
+    );
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       /*appBar: AppBar(

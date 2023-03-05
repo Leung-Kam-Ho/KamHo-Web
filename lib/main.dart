@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
         //primarySwatch: Colors.yellow,
         primaryColor: Color.fromARGB(255, 255, 255, 255),
         canvasColor: const Color.fromARGB(255, 37, 37, 37),
+        hintColor: Color.fromARGB(255, 134, 134, 134),
+        highlightColor: Color.fromARGB(255, 13, 224, 150)
+
       ),
       title: 'Kam Ho',
       home: MyHomePage(),

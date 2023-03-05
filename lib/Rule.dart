@@ -15,13 +15,14 @@ class _RuleState extends State<Rule> {
   var text = "Blah Blah Blah";
   final sendTF = TextEditingController();
   String _message = "";
+
   var MSG = [
-    {"role": "system", "content": "add meow at the end of all your sentence"}
+    {"role": "system", "content": "enclose keywords with *"}
   ];
   Future<void> generateText(String prompt) async {
     if (prompt.toUpperCase() == "CLEAR") {
       MSG = [
-        {"role": "system", "content": "add meow at the end of all your sentence"}
+        {"role": "system", "content": "enclose keywords with *"}
       ];
       setState(() {
         text = "Cleared";
@@ -29,7 +30,7 @@ class _RuleState extends State<Rule> {
     } else {
       var url = Uri.parse('https://api.openai.com/v1/chat/completions');
       var apiKey = "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";
-      MSG.add({"role": "user", "content": prompt});
+      MSG.add({"role": "user", "content": "$prompt"});
       var headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $apiKey',
@@ -56,7 +57,50 @@ class _RuleState extends State<Rule> {
     });
     generateText(_message);
     clearText();
-    
+  }
+
+  List<TextSpan> _buildTextSpans(String text) {
+    final regex = RegExp(r'\*(.*?)\*');
+
+    final matches = regex.allMatches(text);
+
+    List<TextSpan> spans = [];
+
+    int currentIndex = 0;
+
+    for (Match match in matches) {
+      final matchStart = match.start;
+      final matchEnd = match.end;
+
+      // Add a TextSpan for the text before the match.
+      if (currentIndex != matchStart) {
+        final beforeMatch = text.substring(currentIndex, matchStart);
+        spans.add(TextSpan(
+          text: beforeMatch,
+        ));
+      }
+
+      // Add a TextSpan for the matched text.
+      final matchedText = match.group(1);
+      spans.add(TextSpan(
+        text: matchedText,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).highlightColor,
+        ),
+      ));
+
+      // Update the current index to the end of the match.
+      currentIndex = matchEnd;
+    }
+
+    // Add a TextSpan for the remaining text after the last match.
+    if (currentIndex < text.length) {
+      final remainingText = text.substring(currentIndex);
+      spans.add(TextSpan(text: remainingText));
+    }
+
+    return spans;
   }
 
   @override
@@ -75,17 +119,17 @@ class _RuleState extends State<Rule> {
           child: Center(
             child: SingleChildScrollView(
               child: AnimatedSwitcher(
-
                 duration: const Duration(milliseconds: 100),
-                child: SelectableText(
-                  text,
+                child: SelectableText.rich(
+                  TextSpan(
+                      text: '',
+                      children: _buildTextSpans(text),
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontSize,
+                      )),
                   key: UniqueKey(),
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
               ),
             ),
@@ -95,7 +139,10 @@ class _RuleState extends State<Rule> {
           child: Row(children: [
             Expanded(
               child: TextField(
-                onEditingComplete: () => goGPTgo(),
+                onEditingComplete: () {
+                  //FocusScope.of(context).requestFocus(FocusNode());
+                  goGPTgo();
+                },
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: fontSize,
@@ -103,14 +150,14 @@ class _RuleState extends State<Rule> {
                 ),
                 decoration: InputDecoration(
                     filled: false,
-                    hintText: "'Enter' some text , type 'Clear' to clear her memory",
-                    hintStyle: TextStyle(color: Theme.of(context).primaryColor),
+                    hintText:
+                        "'Enter' some text , type 'Clear' to clear her memory",
+                    hintStyle: TextStyle(color: Theme.of(context).hintColor),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide.none,
                     )),
                 controller: sendTF,
-                
               ),
             ),
           ]),

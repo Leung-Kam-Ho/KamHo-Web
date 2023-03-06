@@ -13,7 +13,7 @@ class Game extends StatefulWidget {
 class GameState extends State<Game> {
   int rand = Random().nextInt(6) + 1;
   bool visable = true;
-  bool upperTurn = true;
+  bool upperTurn = false;
   bool diceHover = false;
   List<List<int>> sumList = [
     [0, 0, 0],
@@ -32,7 +32,7 @@ class GameState extends State<Game> {
     ]
   ];
 
-  void weadAI() {
+  void weakAI() {
     final List grid = board[0];
     int AIRand;
     AIRand = Random().nextInt(3);
@@ -67,13 +67,16 @@ class GameState extends State<Game> {
         throwDice();
       });
       if (upDown == 1) {
-      weadAI();
+        Future.delayed(Duration(seconds: 1), () {
+          // your code here
+          weakAI();
+        });
+      }
     }
-    }
-    
   }
 
   void throwDice([int test = 0]) {
+    upperTurn = !upperTurn;
     setState(() {
       board = board;
       if (test == 0) {
@@ -87,14 +90,15 @@ class GameState extends State<Game> {
   void clearGrid() {
     setState(() {
       sumList = [
-        for(int i in Iterable.generate(2))
-        [for(int j in Iterable.generate(3)) 0],
-        
+        for (int i in Iterable.generate(2))
+          [for (int j in Iterable.generate(3)) 0],
       ];
       board = [
-        for(int i in Iterable.generate(2))
-        [for(int j in Iterable.generate(3)) 
-        [for(int k in Iterable.generate(3))0]]
+        for (int i in Iterable.generate(2))
+          [
+            for (int j in Iterable.generate(3))
+              [for (int k in Iterable.generate(3)) 0]
+          ]
       ];
     });
   }
@@ -141,7 +145,11 @@ class GameState extends State<Game> {
           ),
         ),
         DiceGrid(
-          clickOn: (p0) => updateGrid(p0),
+          clickOn: (p0) {
+            if (!upperTurn) {
+              updateGrid(p0);
+            }
+          },
           flip: false,
           grid: board[1],
           turn: !upperTurn,

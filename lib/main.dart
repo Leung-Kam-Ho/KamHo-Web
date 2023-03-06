@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        fontFamily: 'OpenSans',
+        fontFamily: 'NotoSans',
         
         //primarySwatch: Colors.yellow,
         primaryColor: Color.fromARGB(255, 255, 255, 255),

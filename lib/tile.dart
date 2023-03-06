@@ -32,15 +32,20 @@ class _TileState extends State<Tile> {
                       
                       Container(
                           color:Theme.of(context).canvasColor),
-                      Container(
-
-                        child: widget.tts != "0" ? 
-                        SvgPicture.asset(
-                          "MaterialDesign/dice-${widget.tts}.svg"
-                        ,colorFilter: ColorFilter.mode(
-                    Theme.of(context).primaryColor, BlendMode.srcIn),
-                    
-                    ):Container()),
+                      AnimatedScale(
+                        duration: Duration(milliseconds: 300),
+                        scale: widget.tts != "0" ? 1: 0,
+                        //key: UniqueKey(),
+                        child: Container(
+                      
+                          child: 
+                          SvgPicture.asset(widget.tts != "0" ? 
+                            "MaterialDesign/dice-${widget.tts}.svg":"MaterialDesign/dice-1.svg"
+                          ,colorFilter: ColorFilter.mode(
+                                          Theme.of(context).primaryColor, BlendMode.srcIn),
+                                          
+                        )),
+                      ),
                       
                       
                       

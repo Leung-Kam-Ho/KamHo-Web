@@ -88,6 +88,11 @@ flutter:
       fonts:
         - asset: fonts/OpenSans-Regular.ttf
         - asset: fonts/OpenSans-Bold.ttf
+
+    - family: NotoSans
+      fonts:
+        - asset: fonts/NotoSansJP-Regular.otf
+        - asset: fonts/NotoSansJP-Bold.otf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

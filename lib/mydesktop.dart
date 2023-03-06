@@ -44,7 +44,7 @@ class MydesktopState extends State<Mydesktop> {
                 child: RotatedBox(
                   quarterTurns: 3,
                   child: Text(
-                    "KNUCKLEBONES",
+                    "KNUCKLEBONES(Not finished)",
                     style: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontSize: 50,

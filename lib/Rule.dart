@@ -12,17 +12,17 @@ class Rule extends StatefulWidget {
 }
 
 class _RuleState extends State<Rule> {
-  var text = "Blah Blah Blah";
+  var text = "Somethimes you have to tell her highlight all keywords";
   final sendTF = TextEditingController();
   String _message = "";
 
   var MSG = [
-    {"role": "system", "content": "enclose keywords with *"}
+    {"role": "system", "content": "enclose all keywords with *"}
   ];
   Future<void> generateText(String prompt) async {
     if (prompt.toUpperCase() == "CLEAR") {
       MSG = [
-        {"role": "system", "content": "enclose keywords with *"}
+        {"role": "system", "content": "enclose all keywords with *"}
       ];
       setState(() {
         text = "Cleared";
@@ -53,7 +53,7 @@ class _RuleState extends State<Rule> {
   void goGPTgo() {
     _message = sendTF.text;
     setState(() {
-      text = "Loading..";
+      text = "Loading... ";
     });
     generateText(_message);
     clearText();
@@ -129,6 +129,7 @@ class _RuleState extends State<Rule> {
                         fontWeight: FontWeight.bold,
                         fontSize: fontSize,
                       )),
+                      
                   key: UniqueKey(),
                 ),
               ),
@@ -151,7 +152,7 @@ class _RuleState extends State<Rule> {
                 decoration: InputDecoration(
                     filled: false,
                     hintText:
-                        "'Enter' some text , type 'Clear' to clear her memory",
+                        "'Enter' some text ,'Clear' her memory",
                     hintStyle: TextStyle(color: Theme.of(context).hintColor),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),

@@ -12,7 +12,7 @@ class Rule extends StatefulWidget {
 }
 
 class _RuleState extends State<Rule> {
-  var text = "Somethimes you have to tell her highlight all keywords";
+  var text = "ChatGPT3.5";
   final sendTF = TextEditingController();
   String _message = "";
 
@@ -29,7 +29,7 @@ class _RuleState extends State<Rule> {
       });
     } else {
       var url = Uri.parse('https://api.openai.com/v1/chat/completions');
-      var apiKey = "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";
+      var apiKey = "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";
       MSG.add({"role": "user", "content": "$prompt"});
       var headers = {
         'Content-Type': 'application/json',

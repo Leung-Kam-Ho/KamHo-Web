@@ -44,13 +44,24 @@ class GameState extends State<Game> {
 
   void calculateScore([int upDown = 1]) {
     List<int> row;
+    List<int> duplicateCheckList;
+
     for (int i = 0; i < 3; i++) {
+      int repeat = 1;
+      int repeatedValue = 0;
       int sum = 0;
+      duplicateCheckList = [0, 0, 0];
       row = board[upDown][i];
       for (int j = 0; j < 3; j++) {
         sum += row[j];
+        if (row[j] != 0 && duplicateCheckList.contains(row[j])) {
+          repeat += 1;
+          repeatedValue = row[j];
+
+        } 
+        duplicateCheckList[j] = row[j] ;
       }
-      sumList[upDown][i] = sum;
+      sumList[upDown][i] = sum - (repeat*repeatedValue) + (repeat*repeatedValue*repeat);
     }
     print(sumList[upDown]);
   }

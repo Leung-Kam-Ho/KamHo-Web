@@ -1,6 +1,6 @@
 # KamHo
 
-A new Flutter project.
+Flutter project, aims to build a CV website
 
 ## Getting Started
 
